@@ -1,0 +1,10 @@
+*.pyc
+__pycache__
+
+dist
+private
+resources
+venv
+
+examples/ZZT.EXE
+test/manualtest.py
