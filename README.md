@@ -1,6 +1,6 @@
 # Zookeeper
 
-[![license](https://img.shields.io/badge/license-GPL--3.0%2B-brightgreen.svg)](https://raw.githubusercontent.com/SaxxonPike/roton/master/LICENSE) <- Fix the link
+[![license](https://img.shields.io/badge/license-GPL--3.0%2B-brightgreen.svg)](https://github.com/DrDos0016/zookeeper/blob/master/LICENSE) <- Fix the link
 
 Zookeeper is a Python library for parsing, analyzing, and modifying ZZT worlds.
 
