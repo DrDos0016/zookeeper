@@ -102,15 +102,13 @@ class Board(object):
         return tile
 
     @has_pil
-    def screenshot(self, filename, title_screen=False, format="RGB", dark=False):
+    def render(self, title_screen=False, format="RGB", dark=False):
         """
-        Renders PNG of board
-        filename - Output filename (sans extension)
+        Renders PNG of board and returns as an Image
         title_screen - Replaces the player with a black/black tile
         format - RGB by default or RGBA for alpha support
         dark - Renders board as if it were dark
         """
-
         image = Image.new(format, (480, 350), "black")
 
         if not self.elements:
@@ -138,6 +136,18 @@ class Board(object):
                     tile = self.get_tile(176, 7, 0)
             image.paste(tile, ((idx % 60) * 8, (idx // 60) * 14))
 
+        return image;
+
+    @has_pil
+    def screenshot(self, filename, title_screen=False, format="RGB", dark=False):
+        """
+        Saves PNG rendition of board
+        filename - Output filename (sans extension)
+        title_screen - Replaces the player with a black/black tile
+        format - RGB by default or RGBA for alpha support
+        dark - Renders board as if it were dark
+        """
+        image = self.render(title_screen, format, dark)
         image.save(filename + ".png")
 
     @has_pil
