@@ -114,12 +114,14 @@ class Board(object):
         if not self.elements:
             raise Exception
 
+        monitor_tile = (self.stats[0].x - 1 + ((self.stats[0].y - 1) * 60))
         for idx in range(0, 1500):
             element = self.elements[idx]
-            # Force black on black empty for empties/title screen players
-
             if not dark:
-                if element.id == 0 or (element.id == 4 and title_screen):
+                # Render empties as black on black
+                if element.id == 0:
+                    tile = self.get_tile(element.character, 0, 0)
+                elif title_screen and idx == monitor_tile:  # Hide player
                     tile = self.get_tile(element.character, 0, 0)
                 else:
                     # TODO: Handle hi/low intensity backgrounds
