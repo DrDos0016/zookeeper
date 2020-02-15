@@ -11,20 +11,8 @@ import textwrap
 # 
 # cheers and enjoy - kkairos / dan
 
-def main():
+def codesize(path,summary_only):
 
-	args = sys.argv
-	
-	if len(args) > 2:
-		print("\nError: Too many arguments.\n")
-		return
-	elif len(args) > 1:
-		path = args[2]
-	else:
-		path = ""
-		while (len(path) < 1):
-			path = input("\nThis tool shows code size versus ZZT board and file size.\nZZT File Name (Include .ZZT !):")
-			
 	z = Zookeeper(path)
 	lines = []
 	
@@ -58,12 +46,35 @@ def main():
 		
 		lines.append(board_line)
 		
-	board_line = "\n  " + path + " size is " + str(size_total) +"b and total ZZT-OOP size is " + str(oop_total) + "b for a total of " + sdec((oop_total/size_total)*100) + " percent ZZT-OOP."
+	board_line = "\n" + path + " size is " + str(size_total) +"b and total ZZT-OOP size is " + str(oop_total) + "b for a total of " + sdec((oop_total/size_total)*100) + " percent ZZT-OOP."
 	
 	lines.append(filler_line + "\n" + board_line)
-		
-	for line in lines:
-		print(line)
+	
+	if summary_only == False:
+		for line in lines:
+			print(line)
+	else:
+		print(board_line)
+	
+	return
+
+def main():
+
+	args = sys.argv
+
+	if len(args) == 2:
+		codesize(args[1],False)
+	elif len(args) > 2:
+		zzts = []
+		for i in range (1,(len(args))):
+			zzts.append(args[i])
+		for zzt in zzts:
+			codesize(zzt,True)
+	else:
+		path = ""
+		while (len(path) < 1):
+			path = input("\nThis tool shows code size versus ZZT board and file size.\nZZT File Name (Include .ZZT !):")
+		codesize(path,False)
 
 def sdec(x):
 	return "{0:.1f}".format(x)
