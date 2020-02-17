@@ -421,7 +421,7 @@ class Board(object):
                 rle.append(0)
 
             if stat.oop_length:
-                oop = bytes(stat.oop.replace("\n", "\r"), "utf-8")
+                oop = bytes(stat.oop.replace("\n", "\r"), "cp437")
                 for x in range(0, stat.oop_length):
                     rle.append(oop[x])
 
