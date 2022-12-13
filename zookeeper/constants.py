@@ -586,7 +586,7 @@ ZZT_ELEMENTS = [
         "id": 36,
         "name": "Object",
         "oop_name": "object",
-        "character": 2,
+        "character": 32,
     },
     {
         "id": 37,
