@@ -374,6 +374,38 @@ class Zookeeper(object):
                                               stat_idx=stat_tiles
                                               .get(tile_idx, None),
                                               character=178)
+                    # Bombs
+                    elif (id == 13 and stat_tiles.get(tile_idx, None)
+                            is not None):
+                        stat = self.boards[board_idx].stats[
+                            stat_tiles[tile_idx]]
+                        if stat.param1 <= 1:
+                            bomb_char = 11
+                        else:
+                            bomb_char = (48 + stat.param1) % 256
+                        element = Element(id, color, tile=tile_idx,
+                                          stat_idx=stat_tiles
+                                          .get(tile_idx, None),
+                                          character=bomb_char)
+                    # Duplicators
+                    elif (id == 12 and stat_tiles.get(tile_idx, None)
+                            is not None):
+                        stat = self.boards[board_idx].stats[
+                            stat_tiles[tile_idx]]
+                        if stat.param1 == 2:
+                            duplicator_char = 249
+                        elif stat.param1 == 3:
+                            duplicator_char = 248
+                        elif stat.param1 == 4:
+                            duplicator_char = 111
+                        elif stat.param1 == 5:
+                            duplicator_char = 79
+                        else:
+                            duplicator_char = 250
+                        element = Element(id, color, tile=tile_idx,
+                                          stat_idx=stat_tiles
+                                          .get(tile_idx, None),
+                                          character=duplicator_char)
                     # Objects
                     elif (id == 36 and stat_tiles.get(tile_idx, None)
                             is not None):
@@ -388,15 +420,13 @@ class Zookeeper(object):
                             is not None):
                         stat = self.boards[board_idx].stats[
                             stat_tiles[tile_idx]]
-                        if stat.x_step > 32767:
-                            pusher_char = 17
-                        elif stat.x_step > 0:
+                        if stat.x_step == 1:
                             pusher_char = 16
-                        elif stat.y_step > 32767:
+                        elif stat.x_step == 65535:
+                            pusher_char = 17
+                        elif stat.y_step == 65535:
                             pusher_char = 30
-                        elif stat.y_step > 0:
-                            pusher_char = 31
-                        if stat.x_step == 0 and stat.y_step == 0:
+                        else:
                             pusher_char = 31
                         element = Element(id, color, tile=tile_idx,
                                           stat_idx=stat_tiles
@@ -407,14 +437,14 @@ class Zookeeper(object):
                           is not None):
                         stat = self.boards[board_idx] \
                             .stats[stat_tiles[tile_idx]]
-                        if stat.x_step > 32767:
-                            transporter_char = 60
-                        elif stat.x_step > 0:
-                            transporter_char = 62
-                        elif stat.y_step > 32767:
+                        if stat.y_step > 32767:
                             transporter_char = 94
                         elif stat.y_step > 0:
                             transporter_char = 118
+                        elif stat.x_step > 32767:
+                            transporter_char = 60
+                        elif stat.x_step > 0:
+                            transporter_char = 62
                         if stat.x_step == 0 and stat.y_step == 0:
                             transporter_char = 94
                         element = Element(id, color, tile=tile_idx,
