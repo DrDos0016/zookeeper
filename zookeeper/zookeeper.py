@@ -362,6 +362,11 @@ class Zookeeper(object):
                                           stat_idx=stat_tiles
                                           .get(tile_idx, None),
                                           character=color)
+                    elif (id >= 128):
+                        element = Element(id, id, tile=tile_idx,
+                                          stat_idx=stat_tiles
+                                          .get(tile_idx, None),
+                                          character=color)
                     # Invisible Walls
                     elif (id == 28 and settings.INVISIBLE_MODE != constants.INVISIBLE_INVISIBLE):
                         if settings.INVISIBLE_MODE == constants.INVISIBLE_EDITOR:

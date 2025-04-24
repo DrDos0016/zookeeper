@@ -460,7 +460,7 @@ ZZT_ELEMENTS = [
         "id": 15,
         "name": "Star",
         "oop_name": "star",
-        "character": 83,
+        "character": 92,
     },
     {
         "id": 16,
