@@ -550,7 +550,7 @@ ZZT_ELEMENTS = [
         "id": 30,
         "name": "Transporter",
         "oop_name": "transporter",
-        "character": 32,  # The stat handles this completely
+        "character": 32,
     },
     {
         "id": 31,
@@ -586,7 +586,7 @@ ZZT_ELEMENTS = [
         "id": 36,
         "name": "Object",
         "oop_name": "object",
-        "character": 2,
+        "character": 0,
     },
     {
         "id": 37,
